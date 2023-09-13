@@ -1,0 +1,21 @@
+.header {
+  height: 7rem;
+  background-color: #27272a;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.header input {
+  height: 2.8rem;
+  width: 20rem;
+  border-radius: 25px;
+  border: none;
+}
+
+.logo {
+  height: 5rem;
+}

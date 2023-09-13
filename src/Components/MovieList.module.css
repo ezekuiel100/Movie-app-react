@@ -1,0 +1,17 @@
+.movieContainer {
+  width: 70rem;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.Moviecard {
+  width: 200px;
+}
