@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Style from "./MovieList.module.css";
 
 function MovieList({ movieList }) {
@@ -8,8 +9,10 @@ function MovieList({ movieList }) {
       <main className={Style.movieContainer}>
         {movieList.map((movie, i) => (
           <div key={i} className={Style.Moviecard}>
-            <img src={`${baseUrlImage}${movie.poster_path}`} />
-            <p>{movie.original_title}</p>
+            <Link to={`/${movie.original_title}`} state={{ movie: movie }}>
+              <img src={`${baseUrlImage}${movie.poster_path}`} />
+              <p>{movie.original_title}</p>
+            </Link>
           </div>
         ))}
       </main>
