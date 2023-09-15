@@ -1,33 +1,45 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./Filme.module.css";
+import Header from "../Components/Header";
+import { useEffect, useState } from "react";
 
 function Filme() {
-  const { state } = useLocation();
-  const { movie } = state;
+  const [state, setState] = useState("");
+  const { id } = useParams();
 
-  console.log(movie);
+  useEffect(() => {
+    let apiKey = "eaa35fd1cb193de2f116b5c1af778740";
+
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+      .then((res) => res.json())
+      .then((data) => setState(data));
+  }, [id]);
 
   return (
     <>
-      <div className={styles.movieInfo}>
-        <div className={styles.movieContainer}>
-          <aside>
-            <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} />
-          </aside>
+      {
+        <div className={styles.movieInfo}>
+          <div className={styles.movieContainer}>
+            <aside>
+              <img
+                src={`https://image.tmdb.org/t/p/w300${state.poster_path}`}
+              />
+            </aside>
 
-          <main className={styles.descricao}>
-            <h1>{movie.title}</h1>
+            <main className={styles.descricao}>
+              <h1>{state.title}</h1>
 
-            <p className={styles.info}>
-              Lançamento: <span>{movie.release_date}</span>
-            </p>
+              <p className={styles.info}>
+                Lançamento: <span>{state.release_date}</span>
+              </p>
 
-            <p>
-              Descrição: <span>{movie.overview}</span>
-            </p>
-          </main>
+              <p>
+                Descrição: <span>{state.overview}</span>
+              </p>
+            </main>
+          </div>
         </div>
-      </div>
+      }
     </>
   );
 }

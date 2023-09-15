@@ -7,14 +7,15 @@ function MovieList({ movieList }) {
   return (
     <div className={Style.container}>
       <main className={Style.movieContainer}>
-        {movieList.map((movie, i) => (
-          <div key={i} className={Style.Moviecard}>
-            <Link to={`/${movie.original_title}`} state={{ movie: movie }}>
-              <img src={`${baseUrlImage}${movie.poster_path}`} />
-              <p>{movie.original_title}</p>
-            </Link>
-          </div>
-        ))}
+        {movieList &&
+          movieList.map((movie, i) => (
+            <div key={i} className={Style.Moviecard}>
+              <Link to={`/${movie.id}`}>
+                <img src={`${baseUrlImage}${movie.poster_path}`} />
+                <p>{movie.original_title}</p>
+              </Link>
+            </div>
+          ))}
       </main>
     </div>
   );
