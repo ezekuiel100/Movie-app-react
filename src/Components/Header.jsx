@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { PropsContext } from "../App";
 
-function Header({ setQueryMovie }) {
-  const [search, setSearch] = useState("");
+function Header() {
+  const { setQueryMovie, search, setSearch } = useContext(PropsContext);
 
   useEffect(() => {
     let apiKey = "eaa35fd1cb193de2f116b5c1af778740";
@@ -19,7 +20,11 @@ function Header({ setQueryMovie }) {
     <div>
       <header className={styles.header}>
         <Link to="/">
-          <img src="logo.png" alt="" className={styles.logo} />
+          <img
+            src="logo.png"
+            className={styles.logo}
+            onClick={() => setSearch("")}
+          />
         </Link>
 
         <input

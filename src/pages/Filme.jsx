@@ -1,9 +1,13 @@
 import { useParams } from "react-router-dom";
 import styles from "./Filme.module.css";
-import Header from "../Components/Header";
-import { useEffect, useState } from "react";
+
+import { useContext, useEffect, useState } from "react";
+import MovieList from "../Components/MovieList";
+import { PropsContext } from "../App";
 
 function Filme() {
+  const { queryMovie, setSearch } = useContext(PropsContext);
+
   const [state, setState] = useState("");
   const { id } = useParams();
 
@@ -17,7 +21,9 @@ function Filme() {
 
   return (
     <>
-      {
+      {queryMovie.length ? (
+        <MovieList movieList={queryMovie} setSearch={setSearch} />
+      ) : (
         <div className={styles.movieInfo}>
           <div className={styles.movieContainer}>
             <aside>
@@ -39,7 +45,7 @@ function Filme() {
             </main>
           </div>
         </div>
-      }
+      )}
     </>
   );
 }
